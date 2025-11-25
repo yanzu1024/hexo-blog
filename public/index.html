@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>yanzu_blog</title><meta name="author" content="yanzu"><meta name="copyright" content="yanzu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="yanzu_blog">
+<meta property="og:url" content="http://yanzu.tech/index.html">
+<meta property="og:site_name" content="yanzu_blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yanzu.tech/images/avatar.jpg">
+<meta property="article:author" content="yanzu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yanzu.tech/images/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yanzu.tech/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'yanzu_blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: true,
+  isToc: false,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/nav.css"><link rel="stylesheet" href="/css/neon_light.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/info_card.css"><span id="fps"></span><style type="text/css"> .aplayer.aplayer-fixed { left: 20px !important; /* 靠左侧 20px */ top: 50% !important; /* 居中对齐 */ transform: translateY(-50%) !important; /* 让播放器真正居中 */ width: 300px !important; /* 播放器宽度 */ background: transparent !important; /* 透明背景 */ box-shadow: none !important; /* 去掉阴影 */ border: none !important; /* 去掉边框 */ } .aplayer.aplayer-fixed .aplayer-body { background: transparent !important; /* 去掉内部背景 */ } </style><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/images/bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/images/home_bg.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/nav_logo.png" alt="Logo"></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">yanzu_blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yanzu1024" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:472874946@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/648854222?spm_id_from=333.1007.0.0" target="_blank" title="Bilibili"><i class="fab fa-bilibili" style="color: #bilibili;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover"><a href="/2025/07/16/15/" title="Anaconda安装(Win10)"><img class="post-bg" src="http://picbed.yanzu.tech/img/post_cover/p15.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Anaconda安装(Win10)"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/16/15/" title="Anaconda安装(Win10)">Anaconda安装(Win10)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-16T03:41:23.158Z" title="发表于 2025-07-16 11:41:23">2025-07-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-16T03:41:00.000Z" title="更新于 2025-07-16 11:41:00">2025-07-16</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Learning/">Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DL/">DL</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch/">Pytorch</a></span></div><div class="content">Anaconda安装1.下载安装包，直接国内镜像资源，这里下载的是 Anaconda3-2022.10-Windows-x86_64.exe 版本 https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/  2.安装好之后配置环境变量—系统变量中的path，Anaconda是安装在E:\Anaconda3文件下的 分别添加以下三个变量E:\Anaconda3E:\Anaconda3\ScriptsE:\Anaconda3\Library\bin 3.在base环境下添加一个虚拟环境 打开 Anaconda Prompt（Anaconda3）这个命令框列出当前所有的环境1conda env list  创建一个虚拟环境，并指定python版本，这里新建的虚拟环境默认是会保存在Anaconda&#x2F;envs&#x2F; 路径下1conda create  -n env_name python=3.9  如果不是保存在Anaconda&#x2F;envs&#x2F;下，就要手动指定位置了1&gt;conda create ...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/2025/07/15/26/" title="DL之路---啃鱼书（6）"><img class="post-bg" src="http://picbed.yanzu.tech/img/post_cover/p26.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL之路---啃鱼书（6）"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/15/26/" title="DL之路---啃鱼书（6）">DL之路---啃鱼书（6）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-15T13:26:15.949Z" title="发表于 2025-07-15 21:26:15">2025-07-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-15T13:26:00.000Z" title="更新于 2025-07-15 21:26:00">2025-07-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Learning/">Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DL/">DL</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/gnaw-book/">gnaw_book</a></span></div><div class="content">卷积神经网络 卷积神经网络（Convolutional Neural Network，CNN），用于图像识别、语音识别等场景  相邻层的所有神经元之间都有连接，称之为全连接，使用Affine层实现全连接层下面是一个5层的全连接神经网络 可以看到，每个Affine层后面跟着激活函数层而基于CNN的神经网络结构如下 可以看到，CNN的层的连接顺序是 $Convolution - ReLU-Pooling$ ，Pooling层有时会被省略，另外，靠近输出的层中使用了之前使用了 “Affine-ReLU”组合卷积层 回顾Affine层： 在全连接层中，相邻层的神经元全部连接在一起，输出的数量可以任意决定它存在的一个问题是，忽视了输入数据的形状，如输入数据是图像（高、长、通道方向上的3维形状）时，输入到Affine层会将3维数据拉成1维的，无法利用与形状相关的信息 而卷积层Conv可以保持形状不变，当输入数据是图像时，卷积层会以3维数据的形式接收输入数据，并同样以3维数据的形式输出至下一层在CNN中，有时将卷积层Conv的输入输出数据称为特征图（feature...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/2025/07/12/25/" title="DL杂谈"><img class="post-bg" src="http://picbed.yanzu.tech/img/post_cover/p25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL杂谈"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/12/25/" title="DL杂谈">DL杂谈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-12T07:23:41.812Z" title="发表于 2025-07-12 15:23:41">2025-07-12</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-12T07:24:00.000Z" title="更新于 2025-07-12 15:24:00">2025-07-12</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Learning/">Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DL/">DL</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/title-tattle/">title-tattle</a></span></div><div class="content">神经网络杂谈什么是神经网络 神经网络跟函数一样，有输入、输出，本质上也是一种映射关系，当给出一个函数表达式和一些数据，如 $y &#x3D; kx + b$ ，给出了一些点或者说数据 (1,2)、(2,4)、(3,6)、(4,8)，这几组数据可以轻易的求出k和b的值来但当给出的数据很多时，求解k和b这两个参数的问题就会变得复杂，至少是不能一眼看出某种规律。另外，函数表达式越复杂，在数据量越多的情况下，更能找出与之尽可能拟合的函数，因为数据量越大，其某种规律就可能会越明显，求得的参数就会越接近真实值（精确解）函数表达式越复杂，其对应的表达能力会更强，如 $y &#x3D; ax^2 + bx + c$ ，显然，它涵盖了 $y &#x3D; bx + c,a&#x3D;0$求出函数表达式中的参数，也就完成了神经网络的搭建，通过训练来求参数 怎么求参数 直接求出参数的值是不太现实的，因为但表达式足够复杂，参数足够多，参数的求解是极为复杂的但通过求数值解，使这个解尽可能的逼近真实值，当两者的误差达到了所能接受的范围，就把这个数值解近似的作为真实值，如 $y&#x3D;kx$...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/2025/06/20/24/" title="DL之路---啃鱼书（5）"><img class="post-bg" src="http://picbed.yanzu.tech/img/post_cover/p24.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL之路---啃鱼书（5）"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/06/20/24/" title="DL之路---啃鱼书（5）">DL之路---啃鱼书（5）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-20T07:20:58.064Z" title="发表于 2025-06-20 15:20:58">2025-06-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-20T07:21:00.000Z" title="更新于 2025-06-20 15:21:00">2025-06-20</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Learning/">Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DL/">DL</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/gnaw-book/">gnaw_book</a></span></div><div class="content">与学习相关的技巧参数的更新 神经网络的学习的目的是找到使损失函数的值尽可能小的参数，这是寻找最优参数的问题，解决这个问题的过程称为最优化（optimization）SGD（随机梯度下降法） SGD的缺点，如果函数的形状非均向（anisotropic），比如呈延伸状，搜索的路径就会非常低效，低效的根本原因是，梯度的方向并没有指向最小值的方向，如下图 这会导致它的效率很低，基于SGD的最优化的更新路径如下图 可以看到，它是Z字型的移动 Momentum（带动量的随机梯度下降法） 它是动量的意思，和物理有关，数学表达式如下$$v \leftarrow \alpha \cdot v - \eta \cdot \frac {\partial L} {\partial W} \W \leftarrow W + v$$ W同样还是表示要更新的权重参数，$\frac{\partial L}{\partial W}$ 表示损失函数关于W的梯度，$\eta$ 是学习率，而 $v$ 是物理上的速度第一个式子表示，物体在梯度方向上受力，在这个力的作用下，物体的速度增加这一物理法则，$\alpha v$...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/2025/06/16/23/" title="DL之路---啃鱼书（4）"><img class="post-bg" src="http://picbed.yanzu.tech/img/post_cover/p23.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL之路---啃鱼书（4）"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/06/16/23/" title="DL之路---啃鱼书（4）">DL之路---啃鱼书（4）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-16T13:38:14.067Z" title="发表于 2025-06-16 21:38:14">2025-06-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-16T13:38:00.000Z" title="更新于 2025-06-16 21:38:00">2025-06-16</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Learning/">Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DL/">DL</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/gnaw-book/">gnaw_book</a></span></div><div class="content">误差反向传播法1.计算图 无论全局是多么复杂的计算，都可以通过局部计算使各个节点致力于简单的计算，从而简化问题另外，利用计算图可以将中间的计算结果全部保存起来其最大的优势在于，可以通过反向传播高效计算导数反向传播传递的是局部导数下面是，支付金额关于苹果的的价格的导数 就是总的金额，220&#x2F;220 &#x3D; 1，220&#x2F;200 &#x3D;...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/2025/06/15/22/" title="DL之路---啃鱼书（3）"><img class="post-bg" src="http://picbed.yanzu.tech/img/post_cover/p22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL之路---啃鱼书（3）"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/06/15/22/" title="DL之路---啃鱼书（3）">DL之路---啃鱼书（3）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-15T12:25:16.686Z" title="发表于 2025-06-15 20:25:16">2025-06-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-15T12:27:00.000Z" title="更新于 2025-06-15 20:27:00">2025-06-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Learning/">Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DL/">DL</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/gnaw-book/">gnaw_book</a></span></div><div class="content">神经网络的学习从数据中学习 所谓的学习就是从训练数据中自动获取最优权重参数的过程为了使神经网络能够学习，引入了损失函数这一指标，而学习的目标就是以损失函数为基准，找出使它的值达到最小的权重参数（函数斜率的梯度法）特征量：是指可以从输入数据（输入图像）中准确地提取出本质数据（重要数据）的转换器（图像的特征量通常表示为向量形式），但特征量的选取是人为选择的，还是存在人为因素的介入深度学习也被称为端到端机器学习（end-to-end machine...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">yanzu</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yanzu1024/yanzu1024.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yanzu1024" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:472874946@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/648854222?spm_id_from=333.1007.0.0" target="_blank" title="Bilibili"><i class="fab fa-bilibili" style="color: #bilibili;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"></div></div></main><footer id="footer" style="background-image: url(/images/home_bg.png);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By yanzu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = ["今日事;今日毕","Never put off till tomorrow what you can do today"]
+        sub.unshift(data.hitokoto, from)
+        typedJSFn.init(sub)
+      } else {
+        document.getElementById('subtitle').textContent = data.hitokoto
+      }
+    })
+}
+typedJSFn.run(subtitleType)
+</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script async src="/js/fps.js"></script><script async src="/js/title.js"></script><div class="aplayer no-destroy" data-id="13400648726" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
